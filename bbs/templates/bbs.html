@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BBS</title>
+  <style>
+    p { border: 1px solid silver; padding: 1em; }
+    span { background-color: #eef; }
+  </style>
+</head>
+
+<body>
+  <h1>BBS</h1>
+  <div>
+    <form action="/write" method="post">
+      名前: <input type="text" name="name"><br>
+      本文: <input type="text" name="body" style="width:30em;"><br>
+      <input type="submit" value="書込">
+    </form>
+  </div>
+  <hr>
+  {{range $log := .Logs}}
+    <p>{{$log.ID}} <span>{{$log.Name | html}}</span>: {{$log.Body | html}} --- {{$log.When.Format "2006/1/2 15:04"}}</p>
+  {{end}}
+</body>
+
+</html>
